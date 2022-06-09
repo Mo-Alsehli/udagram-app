@@ -7,7 +7,7 @@ orbs:
   browser: circleci/browser-tools@1.2.4
    
 jobs:
-  Build: 
+  build: 
     docker:
       - image: cimg/base:stable
     steps: 
