@@ -7,7 +7,7 @@ orbs:
   browser: circleci/browser-tools@1.2.4
    
 jobs:
-  build: 
+  Build-Deploy: 
     docker:
       - image: cimg/base:stable
     steps: 
@@ -56,4 +56,7 @@ jobs:
           command: |
             npm run backend:deploy
   
-  
+workflows:
+  deployment:
+    jobs:
+      - Build-Deploy
