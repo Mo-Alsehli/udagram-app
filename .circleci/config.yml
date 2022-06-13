@@ -7,7 +7,7 @@ orbs:
   browser: circleci/browser-tools@1.2.4
    
 jobs:
-  build: 
+  Build-Deploy: 
     docker:
       - image: cimg/base:stable
     steps: 
@@ -35,6 +35,11 @@ jobs:
           name: Back-End Install
           command: |
             npm run backend:install
+      # Change main entry point for production:
+      - run:
+          name: Back-End Change Main Entry Point
+          command: |
+            npm run backend:change-main
       # Build backend:
       - run:
           name: Back-End Build
@@ -50,4 +55,13 @@ jobs:
           name: Back-End Deploy
           command: |
             npm run backend:deploy
+  
+workflows:
+  deployment:
+    jobs:
+    # Build & Deploy project on Main Branch
+      - Build-Deploy:
+         filters:
+            branches:
+              only: main
   
