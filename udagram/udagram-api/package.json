@@ -12,9 +12,11 @@
     "dev": "npx ts-node-dev --respawn --transpileOnly ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
-    "deploy": "npm run build && eb list && eb use udagram-api-dev && eb deploy",
+    "deploy": "chmod +x bin/deploy.sh && bin/deploy.sh",
+    "limit-to-master-entry-point": "chmod +x bin/limit-to-master-entry.sh && bin/limit-to-master-entry.sh",
     "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\"",
+    "install-jk-sponge": "chmod +x bin/install-jk-sponge.sh && bin/install-jk-sponge.sh",
     "aws-eb": "chmod +x bin/aws-eb.sh && bin/aws-eb.sh"
   },
   "keywords": [],

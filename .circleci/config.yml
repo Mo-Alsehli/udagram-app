@@ -59,4 +59,8 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - Build-Deploy
+      # Build & Deploy project on Main Branch
+      - Build-Deploy:
+         filters:
+            branches:
+              only: master
